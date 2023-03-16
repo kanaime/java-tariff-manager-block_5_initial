@@ -25,5 +25,16 @@ public class AddressJdbcTest {
         assertThat(firstAddress.get().getId().toString().equals("1")).isTrue();
     }
 
+    @Test
+    public void shouldNotLoadAddressWithId7() {
+        Optional<Address> firstAddress = addressLegacyDao.getByIdJava7Syntax(7);
+        assertThat(firstAddress.isEmpty()).isFalse();
+    }
+
+    @Test
+    public void shouldReturnEmptyIfAddressNotFound() {
+        Optional<Address> firstAddress = addressLegacyDao.getByIdJava7Syntax(4777);
+        assertThat(firstAddress.isEmpty()).isTrue();
+    }
 
 }
